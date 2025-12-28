@@ -12,7 +12,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Package, Star } from "lucide-react";
+import { Package, Star } from "lucide-react";
+import { CartBadge } from "@/components/cart/CartBadge";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 
 export default async function StudentDashboard() {
   const session = await auth();
@@ -74,12 +76,7 @@ export default async function StudentDashboard() {
                   My Orders
                 </Link>
               </Button>
-              <Button asChild className="bg-teal-600 hover:bg-teal-700">
-                <Link href="/student/cart">
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Cart
-                </Link>
-              </Button>
+              <CartBadge />
             </div>
           </div>
         </div>
@@ -222,14 +219,16 @@ export default async function StudentDashboard() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button
+                  <AddToCartButton
+                    hamperId={hamper.id}
+                    name={hamper.name}
+                    price={hamper.price}
+                    image={hamper.images[0] || ""}
+                    vendorId={hamper.vendorId}
+                    vendorName={hamper.vendor.businessName}
+                    stock={hamper.stock}
                     className="w-full bg-teal-600 hover:bg-teal-700"
-                    asChild
-                  >
-                    <Link href={`/student/hampers/${hamper.id}`}>
-                      View Details
-                    </Link>
-                  </Button>
+                  />
                 </CardFooter>
               </Card>
             ))}
