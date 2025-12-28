@@ -218,7 +218,12 @@ export default async function StudentDashboard() {
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex flex-col gap-2">
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href={`/student/hampers/${hamper.id}`}>
+                      View Details
+                    </Link>
+                  </Button>
                   <AddToCartButton
                     hamperId={hamper.id}
                     name={hamper.name}
